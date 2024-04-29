@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Mobile
+class V5PowerAdapter
+interface V5Power
+
+
+Mobile --> V5Power
+class Mobile {
+ inputPower(V5Power power)
+}
+note left : 手机充电
+interface V5Power{
+    provideV5Power()
+}
+note left  : 提供5V电压的一个接口
+V5PowerAdapter ..|> V5Power
+
+class V5PowerAdapter{
+ int provideV5Power()
+}
+note top  : 适配器，完成220V转5V的作用
+
+class V220Power {
+    int provideV220Power()
+}
+note top :我们拥有的是220V家用交流电
+V5PowerAdapter --> V220Power
+
+
+@enduml
